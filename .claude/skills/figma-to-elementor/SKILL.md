@@ -36,6 +36,20 @@ en vivo antes de pasar a la siguiente.
 - Usar tokens globales, nunca colores/tipografías hardcodeadas.
 - Preferir `batch-update` para minimizar llamadas.
 
+## Limitaciones conocidas (dry-run 2026-06-16)
+- **El estilo visual de widgets atómicos NO es escribible** con `update-atomic-widget`:
+  `color`, `background-color`, `border-*` devuelven `success:true` pero NO se persisten
+  ni renderizan (el estilo atómico vive en un array `styles`/`variants` referenciado por
+  `classes`, no en `settings`). Verificar siempre con `get-element-settings`.
+  → Estilar a nivel `flexbox` (`background_color` como param SÍ funciona), vía clases
+  globales, o marcar como deuda. Ver `docs/superpowers/plans/2026-06-16-figma-to-elementor-dryrun-report.md`.
+- **Unidad 0 debe ser no-destructiva:** solo añadir tokens globales que no existan; nunca
+  sobrescribir el kit de un sitio con kit propio sin aprobación.
+- `success:true` del MCP NO garantiza efecto — la verificación no debe confiar en él.
+- `gap: 0` es inválido en `add-flexbox` (omitir el gap).
+- Borrador no es visible públicamente: publicar la página (o usar sesión autenticada)
+  antes de verificar con navegador headless.
+
 ## Unidad 0 · Setup de tokens globales (una vez por proyecto)
 
 1. `detect-elementor-version` para confirmar editor v4 (atómico). Si no es v4, avisar.
