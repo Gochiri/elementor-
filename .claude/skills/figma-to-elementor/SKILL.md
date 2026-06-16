@@ -36,13 +36,23 @@ en vivo antes de pasar a la siguiente.
 - Usar tokens globales, nunca colores/tipografías hardcodeadas.
 - Preferir `batch-update` para minimizar llamadas.
 
-## Limitaciones conocidas (dry-run 2026-06-16)
-- **El estilo visual de widgets atómicos NO es escribible** con `update-atomic-widget`:
-  `color`, `background-color`, `border-*` devuelven `success:true` pero NO se persisten
-  ni renderizan (el estilo atómico vive en un array `styles`/`variants` referenciado por
-  `classes`, no en `settings`). Verificar siempre con `get-element-settings`.
-  → Estilar a nivel `flexbox` (`background_color` como param SÍ funciona), vía clases
-  globales, o marcar como deuda. Ver `docs/superpowers/plans/2026-06-16-figma-to-elementor-dryrun-report.md`.
+## Estilado de widgets atómicos — método validado (dry-run 2026-06-16)
+- **NO usar `update-atomic-widget` para estilo visual** (`color`, `background-color`,
+  `border-*`): devuelve `success:true` pero NO persiste ni renderiza (el estilo atómico
+  vive en `styles`/`variants` referenciado por `classes`, no en `settings`). Las clases
+  globales NO son creables por el MCP (`list-global-classes` es read-only).
+- **Método que SÍ renderiza — inyección de CSS de página:** usar `update-page-settings`
+  con `custom_css` scopeado al page-id y/o a la clase del elemento, con `!important`:
+  ```css
+  body.page-id-{POST_ID} .elementor-element-{ELEMENT_ID} { color:#002fa7 !important; }
+  ```
+  Validado: un h1 atómico pasó a azul `#002fa7` por esta vía. Es el mismo patrón que usa
+  la página de producción de omibu (un widget `html` con `<style>` scopeado).
+- Layout (`add-flexbox`: direction/gap/padding/align/background_color) y contenido
+  (texto, tag) SÍ se escriben directo. Solo el estilo tipográfico/color/borde per-widget
+  necesita la inyección de CSS.
+- Verificar siempre con `get-element-settings` + screenshot; nunca confiar en `success:true`.
+  Ver `docs/superpowers/plans/2026-06-16-figma-to-elementor-dryrun-report.md`.
 - **Unidad 0 debe ser no-destructiva:** solo añadir tokens globales que no existan; nunca
   sobrescribir el kit de un sitio con kit propio sin aprobación.
 - `success:true` del MCP NO garantiza efecto — la verificación no debe confiar en él.
@@ -105,10 +115,14 @@ Por cada Plan de Sección (IR):
    - `svg` → `add-atomic-svg` (assetId).
    - `flexbox` (anidado) → `add-flexbox` y recursión sobre sus `children`.
 3. Agrupar el máximo de operaciones en `batch-update` para minimizar llamadas.
-4. Confirmar con `get-page-structure` que la sección quedó montada con la jerarquía
+4. **Estilo visual** (color de texto, color/borde de botón, tipografía): NO con
+   `update-atomic-widget` (no renderiza). Acumular reglas CSS por elemento y aplicarlas
+   en un solo `update-page-settings` con `custom_css` (ver "Estilado de widgets atómicos").
+   El layout y `background_color` de flexbox sí van directos en `add-flexbox`.
+5. Confirmar con `get-page-structure` que la sección quedó montada con la jerarquía
    esperada antes de verificar.
 
-**Salida:** sección construida en la página destino.
+**Salida:** sección construida y estilada en la página destino.
 
 ## Unidad 4 · Verificación visual (por sección)
 

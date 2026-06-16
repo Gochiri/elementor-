@@ -4,7 +4,7 @@
 **Sección probada:** bloque de texto del hero de omibu (Figma node `17:239`)
 **Página destino:** WordPress/Elementor `post_id=220` en `factum-omibu.es/newomibu`
 **URL en vivo:** https://factum-omibu.es/newomibu/dry-run-hero-figma-to-elementor/
-**Estado global:** ⚠️ Pipeline validado / estilo visual bloqueado por limitación del MCP
+**Estado global:** ✅ Pipeline validado / estilo visual resuelto vía inyección de CSS
 
 ---
 
@@ -76,16 +76,25 @@ observó. El problema no era el prompt: era una **capacidad faltante del MCP de 
 3. **Unidad 4 (verification-loop):** NO confiar en `success:true`; verificar persistencia
    con `get-element-settings` además del screenshot.
 
-## Recomendación
+## Solución validada (inyección de CSS)
 
-- **Bloqueante para fidelidad de color:** se necesita o bien (a) una herramienta del MCP
-  de Elementor que escriba el array `styles`/`variants`, o (b) aplicar estilos vía clases
-  globales (`list-global-classes` / definir clases con props) y asignarlas por `classes`.
-- **Siguiente paso sugerido:** investigar si el MCP expone creación de clases globales con
-  props de estilo; si sí, reescribir Unidad 3 para estilar vía clases en lugar de
-  `update-atomic-widget`.
+Se investigó el workaround y **quedó resuelto**:
+
+- Las **clases globales NO son creables** por el MCP (`list-global-classes` es read-only;
+  el sitio tiene 0 clases).
+- La página de producción de omibu (post 52) usa widgets **legacy** + un widget `html`
+  con un `<style>` scopeado a `body.page-id-52` y `!important` — es decir, **inyección de
+  CSS**, no props de estilo.
+- **Probado y confirmado:** aplicar `update-page-settings` con `custom_css`:
+  ```css
+  body.page-id-238 .elementor-element-cc8e1e5 { color:#002fa7 !important; }
+  ```
+  hizo que un h1 atómico renderizara en azul `#002fa7`. ✅
+- **Unidad 3 actualizada:** el estilo visual per-widget se acumula y se aplica en un solo
+  `update-page-settings` con `custom_css` (scope `body.page-id-{id} .elementor-element-{id}`),
+  no con `update-atomic-widget`.
 
 ## Nota operativa
 
-La página de prueba quedó **publicada** en el sitio en vivo (`post_id=220`) para permitir
-la verificación. Conviene **revertir a borrador o eliminarla** cuando ya no se necesite.
+Las páginas de prueba (`post_id=220` y `post_id=238`) se movieron a la **papelera**.
+
