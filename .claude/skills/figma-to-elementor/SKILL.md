@@ -59,6 +59,34 @@ en vivo antes de pasar a la siguiente.
   necesita la inyección de CSS.
 - Verificar siempre con `get-element-settings` + screenshot; nunca confiar en `success:true`.
   Ver `docs/superpowers/plans/2026-06-16-figma-to-elementor-dryrun-report.md`.
+
+## Imágenes — `add-atomic-image` está roto (validado 2026-06-16)
+- `add-atomic-image` rechaza tanto `image_id` como `image_url` (`Settings validation
+  failed. image: invalid_value`). **No usarlo.**
+- **Patrón validado para CUALQUIER elemento de imagen** (foto, logo, tira de logos,
+  decoración):
+  1. Figma `download_assets(nodeId, format=png, scale=2)` → URL del render.
+  2. `sideload-image(url)` → URL en la Media Library de WordPress.
+  3. `add-flexbox` como contenedor (con `min_height` y, si aplica, ancho fijo por CSS).
+  4. Inyectar por `custom_css` (selector `[data-id="{ID}"]`):
+     ```css
+     body.page-id-{POST} [data-id="{ID}"]{
+       background-image:url('{WP_URL}') !important;
+       background-size:contain !important;background-repeat:no-repeat !important;
+       background-position:center !important;width:{W}px !important;height:{H}px !important;}
+     ```
+  Validado en el top de omibu: imagen del hero, logo del navbar y tira de logos, todo por
+  esta vía.
+- **Tip de export:** un PNG exportado de un *frame* de Figma puede traer una matte clara
+  horneada (caja alrededor del contenido). Si molesta, exportar el nodo de contenido
+  exacto (p. ej. la elipse) o forzar fondo transparente; `background-color:transparent`
+  del contenedor NO la quita si está en el PNG.
+
+## Navbar / filas con logo + menú
+- Patrón: `add-flexbox` row con `justify=space-between`, `align=center`. Izquierda: logo
+  (contenedor con background-image, ver arriba). Derecha: `add-flexbox` row (gap ~30) con
+  `add-atomic-paragraph` por cada link + `add-atomic-button` para el CTA. Estilar links por
+  CSS (`color`, `font-size`, `font-weight`, `margin:0`, `white-space:nowrap`).
 - **Unidad 0 debe ser no-destructiva:** solo añadir tokens globales que no existan; nunca
   sobrescribir el kit de un sitio con kit propio sin aprobación.
 - `success:true` del MCP NO garantiza efecto — la verificación no debe confiar en él.
