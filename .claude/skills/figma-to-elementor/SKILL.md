@@ -104,6 +104,33 @@ en vivo antes de pasar a la siguiente.
   contenedor NO la quita porque está horneada en el PNG.)
 - Para que un hijo SÍ ocupe el espacio sobrante (p. ej. la columna de texto del hero al
   lado de una imagen fija), darle `flex:1 !important`.
+
+## Componentes interactivos: acordeón / tabs (validado 2026-06-16)
+- Si en Figma la columna es un componente `Tablist`/`Tab`/`Tabpanel` o un acordeón,
+  **replicarlo como widget interactivo real**, no como divs apilados.
+- Los **widgets legacy** (`add-accordion`, `add-toggle`, tabs) **SÍ funcionan dentro de
+  una página atómica v4**. `add-accordion` recibe `tabs:[{tab_title, tab_content}]`
+  (`tab_content` admite HTML).
+- Estilarlo por sus clases legacy scopeadas al page-id:
+  ```css
+  body.page-id-{P} .elementor-accordion .elementor-accordion-item{border:none !important;border-top:1px solid #eee !important;background:transparent !important;}
+  /* el título suele venir en serif del tema y el item activo con otro color: forzar TODOS
+     los estados, incluido el <a> interno */
+  body.page-id-{P} .elementor-accordion .elementor-tab-title,
+  body.page-id-{P} .elementor-accordion .elementor-tab-title a,
+  body.page-id-{P} .elementor-accordion .elementor-tab-title.elementor-active,
+  body.page-id-{P} .elementor-accordion .elementor-tab-title.elementor-active a{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif !important;font-weight:700 !important;color:#000 !important;text-decoration:none !important;}
+  ```
+- Limitación: el acordeón usa UN icono toggle (`+/-`) para todos los items; no admite
+  iconos custom por item. Si Figma tiene iconos por item, quedan como deuda (ver SVG).
+
+## Iconos SVG — bloqueados por WordPress
+- WordPress **no permite subir SVG** por defecto (`no tienes permisos para subir este tipo
+  de archivo`) → requiere un plugin (p. ej. "Safe SVG") o ajuste del servidor.
+- Mientras tanto: re-exportar el icono como PNG con
+  `download_assets(nodeId, defaultFormat=png, defaultScale=4)` (scale 4 para nitidez en
+  iconos pequeños) y subirlo con `sideload-image`.
 - **Unidad 0 debe ser no-destructiva:** solo añadir tokens globales que no existan; nunca
   sobrescribir el kit de un sitio con kit propio sin aprobación.
 - `success:true` del MCP NO garantiza efecto — la verificación no debe confiar en él.
