@@ -87,6 +87,23 @@ en vivo antes de pasar a la siguiente.
   (contenedor con background-image, ver arriba). Derecha: `add-flexbox` row (gap ~30) con
   `add-atomic-paragraph` por cada link + `add-atomic-button` para el CTA. Estilar links por
   CSS (`color`, `font-size`, `font-weight`, `margin:0`, `white-space:nowrap`).
+
+## Layout — aprendizajes (validado 2026-06-16)
+- **⚠️ Los flexbox atómicos CRECEN por defecto** (`flex-grow:1`): los hijos se estiran y
+  llenan el contenedor. Síntoma típico: `justify:space-between` "no funciona" porque un
+  hijo (p. ej. el grupo de menú) ocupa todo el ancho y no deja hueco. **Fix:** dar
+  `flex:0 0 auto !important` por CSS a los contenedores que deben ir a ancho de contenido
+  (menú, logo, imagen de tamaño fijo). Diagnosticar con `getComputedStyle().width`.
+- **Contenedor centrado tipo Figma** (Figma suele centrar el contenido en ~1300px):
+  sección con `align-items:center !important`; cada fila con
+  `width:100% !important;max-width:1300px !important;margin:0 auto !important`.
+- **Mattes de PNG exportado de Figma** = color del fill del frame (a menudo el fondo del
+  hero, p. ej. `#f4f4f4`). Muestrear el color real con canvas
+  (`getImageData(2,2,1,1)`) y poner el `background-color` de la sección a ese color exacto
+  → la "caja" alrededor de la imagen/logos se funde. (`background-color:transparent` del
+  contenedor NO la quita porque está horneada en el PNG.)
+- Para que un hijo SÍ ocupe el espacio sobrante (p. ej. la columna de texto del hero al
+  lado de una imagen fija), darle `flex:1 !important`.
 - **Unidad 0 debe ser no-destructiva:** solo añadir tokens globales que no existan; nunca
   sobrescribir el kit de un sitio con kit propio sin aprobación.
 - `success:true` del MCP NO garantiza efecto — la verificación no debe confiar en él.
