@@ -42,12 +42,16 @@ en vivo antes de pasar a la siguiente.
   vive en `styles`/`variants` referenciado por `classes`, no en `settings`). Las clases
   globales NO son creables por el MCP (`list-global-classes` es read-only).
 - **Método que SÍ renderiza — inyección de CSS de página:** usar `update-page-settings`
-  con `custom_css` scopeado al page-id y/o a la clase del elemento, con `!important`:
+  con `custom_css` scopeado al page-id. **Selector correcto: `[data-id="{ELEMENT_ID}"]`**
+  (los widgets atómicos NO usan `.elementor-element-{id}`; usan clases `e-heading-base`/
+  `e-button-base` + atributo `data-id`). Con `!important`:
   ```css
-  body.page-id-{POST_ID} .elementor-element-{ELEMENT_ID} { color:#002fa7 !important; }
+  body.page-id-{POST_ID} [data-id="{HEADING_ID}"] { color:#002fa7 !important; font-size:70px !important; }
+  /* botón: el <a class="e-button-base"> ES el elemento data-id; apuntar directo + descendientes */
+  body.page-id-{POST_ID} [data-id="{BTN_ID}"], body.page-id-{POST_ID} [data-id="{BTN_ID}"] * { background-color:#002fa7 !important; color:#fff !important; }
   ```
-  Validado: un h1 atómico pasó a azul `#002fa7` por esta vía. Es el mismo patrón que usa
-  la página de producción de omibu (un widget `html` con `<style>` scopeado).
+  Validado end-to-end sobre el hero de omibu: títulos (oscuro/azul 70px bold) y botones
+  (filled azul-blanco / outline) renderizaron fieles al Figma.
 - Layout (`add-flexbox`: direction/gap/padding/align/background_color) y contenido
   (texto, tag) SÍ se escriben directo. Solo el estilo tipográfico/color/borde per-widget
   necesita la inyección de CSS.

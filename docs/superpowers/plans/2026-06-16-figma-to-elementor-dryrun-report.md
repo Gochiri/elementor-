@@ -85,11 +85,14 @@ Se investigó el workaround y **quedó resuelto**:
 - La página de producción de omibu (post 52) usa widgets **legacy** + un widget `html`
   con un `<style>` scopeado a `body.page-id-52` y `!important` — es decir, **inyección de
   CSS**, no props de estilo.
-- **Probado y confirmado:** aplicar `update-page-settings` con `custom_css`:
+- **Probado y confirmado:** aplicar `update-page-settings` con `custom_css`. El selector
+  correcto para widgets atómicos es **`[data-id="{ELEMENT_ID}"]`** (no
+  `.elementor-element-{id}`; usan `e-heading-base`/`e-button-base` + `data-id`):
   ```css
-  body.page-id-238 .elementor-element-cc8e1e5 { color:#002fa7 !important; }
+  body.page-id-245 [data-id="bede655"] { color:#002fa7 !important; font-size:70px !important; }
   ```
-  hizo que un h1 atómico renderizara en azul `#002fa7`. ✅
+  Validado end-to-end sobre el hero completo de omibu (post 245): títulos oscuro/azul y
+  botones filled/outline renderizaron **fieles al Figma**. ✅
 - **Unidad 3 actualizada:** el estilo visual per-widget se acumula y se aplica en un solo
   `update-page-settings` con `custom_css` (scope `body.page-id-{id} .elementor-element-{id}`),
   no con `update-atomic-widget`.
