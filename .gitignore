@@ -1,0 +1,7 @@
+# Clon de referencia (solo para extraer heurísticas, no se versiona)
+.reference/
+
+# Artefactos temporales de verificación visual
+.playwright-mcp/
+*.png
+excalidraw.log

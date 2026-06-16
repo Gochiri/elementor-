@@ -19,6 +19,8 @@ en vivo antes de pasar a la siguiente.
 ## Referencias (leer antes de empezar)
 - `references/ir-schema.md` — esquema del Plan de Sección.
 - `references/mapping-table.md` — mapeo Figma → Elementor v4.
+- `references/figma-heuristics.md` — heurísticas de mapeo (peso de fuente, tamaño→heading,
+  alineación, fills, y reagrupado semántico de frames sin auto-layout).
 - `references/verification-loop.md` — loop de verificación y reglas de parada.
 
 ## Secuencia
