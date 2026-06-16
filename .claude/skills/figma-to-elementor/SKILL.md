@@ -17,6 +17,10 @@ en vivo antes de pasar a la siguiente.
 - URL del sitio en vivo donde se renderiza la página destino (para verificación).
 
 ## Referencias (leer antes de empezar)
+- **`references/first-pass-playbook.md` — LEER PRIMERO.** Recetario listo para copiar
+  (orden de operaciones + snippets CSS por tipo de elemento + checklist) que hace que el
+  primer render salga casi fiel. Aplicarlo de entrada evita repetir la iteración de
+  descubrimiento ya resuelta.
 - `references/ir-schema.md` — esquema del Plan de Sección.
 - `references/mapping-table.md` — mapeo Figma → Elementor v4.
 - `references/figma-heuristics.md` — heurísticas de mapeo (peso de fuente, tamaño→heading,
