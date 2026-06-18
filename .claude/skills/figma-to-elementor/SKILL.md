@@ -26,6 +26,9 @@ en vivo antes de pasar a la siguiente.
 - `references/figma-heuristics.md` — heurísticas de mapeo (peso de fuente, tamaño→heading,
   alineación, fills, y reagrupado semántico de frames sin auto-layout).
 - `references/verification-loop.md` — loop de verificación y reglas de parada.
+- `references/portability-setup.md` — correr la skill en desktop/web/Antigravity: cómo
+  corren los MCP (Figma y Elementor son HTTP remotos → portables), setup por entorno y
+  seguridad del credencial.
 
 ## Secuencia
 1. **Unidad 0** — Setup de tokens globales (una vez).
