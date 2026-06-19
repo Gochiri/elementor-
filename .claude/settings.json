@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__elementor-mcp__elementor-mcp-get-global-settings",
+      "mcp__elementor-mcp__elementor-mcp-build-page"
+    ]
+  }
+}

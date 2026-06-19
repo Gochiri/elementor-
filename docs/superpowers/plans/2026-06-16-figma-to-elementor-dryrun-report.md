@@ -2,8 +2,8 @@
 
 **Fecha:** 2026-06-16
 **Sección probada:** bloque de texto del hero de omibu (Figma node `17:239`)
-**Página destino:** WordPress/Elementor `post_id=220` en `factum-omibu.es/newomibu`
-**URL en vivo:** https://factum-omibu.es/newomibu/dry-run-hero-figma-to-elementor/
+**Página destino:** WordPress/Elementor `post_id=220` en `TU-WORDPRESS`
+**URL en vivo:** https://TU-WORDPRESS/dry-run-hero-figma-to-elementor/
 **Estado global:** ✅ Pipeline validado / estilo visual resuelto vía inyección de CSS
 
 ---
