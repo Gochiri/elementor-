@@ -43,16 +43,29 @@
 
 ---
 
-## Tabla de resultados (a rellenar tras el piloto)
+## Tabla de resultados — caso Ágave Azul (2026-06-25)
+
+> **Caso real usado:** Ágave Azul (restaurante mexicano + obrador, Santander), no Kau/Asesoría Energética (que aún no llegó). Briefing: doc de Google del cliente.
+> **Asimetría de alcance (importante para leer la tabla):** Relume generó **el sitio completo** (8 páginas) de una pasada; la vía Claude hizo keyword research (SE Ranking) + copy completo de **2 páginas** (Inicio, Obrador) y briefed las otras 6. Se compara calidad/limpieza/SEO por página generada, no volumen total. La salida de Relume puede incluir retoques manuales del equipo (Senia/Alberto) posteriores a la generación; las viñetas `.` vacías y erratas sugieren que está bastante en crudo.
 
 | Métrica | Vía A (Relume) | Vía B (Claude) | Ganador |
 |---|---|---|---|
-| Tiempo de retoque manual | | | |
-| Fidelidad SEO | | | |
-| Pérdida de info | | | |
-| Calidad del copy (1-5) | | | |
-| Limpieza de salida | | | |
-| Tiempo total de la fase | | | |
+| Tiempo de retoque manual | Alto — limpiar bloques `.` vacíos, corregir página mal etiquetada (Obrador rotulado "El restaurante"), erratas, **y añadir toda la capa SEO inexistente** | Bajo — copy llega limpio y mapeado a keyword/intención; falta completar 6 páginas y validar tono con cliente | **B** |
+| Fidelidad SEO | Baja — sin title/meta, sin keyword por sección, sin intención ni schema; H1 genéricos | Alta — cada sección con keyword + vol/dif/intención (SE Ranking), title+meta por página, clustering pillar/spoke, evita genéricos inviables | **B** |
+| Pérdida de info | Media — cubre mucho del briefing pero deja huecos placeholder e inventa algún dato | Baja — conserva todo el briefing y lo mapea a arquitectura | **B** (leve) |
+| Calidad del copy (1-5) | **4** — voz mexicana con chispa, variada y creativa | **4** — profesional, on-brief (el cliente pidió "profesional"), keyword-natural; menos juguetón | **Empate** |
+| Limpieza de salida | Baja — viñetas `.` vacías, cifras duplicadas entre páginas, página mal rotulada, erratas ("Food struck", "diselo") | Alta — markdown limpio, sin Lorem ni placeholders | **B** |
+| Tiempo total de la fase | Rápido a "borrador de sitio completo", pero exige retrofit SEO grande después | Más lento por página, pero llega **SEO-ready y limpio** (sin segunda pasada SEO) | **Depende** (ver decisión) |
+
+---
+
+## Decisión (2026-06-25): **Híbrido**
+
+- **Claude para estructura + SEO + copy** (lo que gana de forma clara: fidelidad SEO, limpieza, menos retoque). Es la espina dorsal del flujo.
+- **Relume opcional como explorador visual de bloques** — su fuerza real es la librería de bloques y la voz creativa, no el SEO. Útil para inspirar variedad de secciones, no como fuente de copy/estructura definitiva.
+- Cumple el criterio del doc: la Vía B gana en pérdida de info y en limpieza, con calidad de copy ≥ a la Vía A; no la reemplaza al 100% solo porque la exploración visual rápida de Relume aún aporta.
+
+**Pendiente para cerrar el piloto con datos duros:** repetir con un caso "S" puro (servicios, sin la complejidad multi-marca de Ágave Azul) **cronometrando minutos reales** de retoque en ambas vías, y a igual alcance (mismas páginas).
 
 ---
 

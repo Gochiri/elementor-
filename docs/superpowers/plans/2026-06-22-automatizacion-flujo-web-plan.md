@@ -37,15 +37,27 @@ Briefing del cliente
 ① CLAUDE (orquestador) + SE Ranking (MCP oficial)
    → keyword research SEO automática (ya pagan SE Ranking)
    → estructura por bloques + copy SEO, por secciones, SIN corte de 5.000 char
-   ↓  (consolida/elimina el GEM de Gemini; ver piloto Relume)
-② FIGMA — diseñador aplica SISTEMA DE DISEÑO + tokens y consigue aprobación
-   visual del cliente   ← valor de Alberto
+   ↓  (consolida/elimina el GEM de Gemini)
+② WIREFRAMES con copy (reemplaza la etapa de wireframe de Relume)
+   → Claude genera 4-5 variantes de wireframe en HTML lo-fi (gris) con el copy+SEO YA colocado
+   → captura HTML→Figma como frames editables → cliente/equipo elige y aprueba la estructura
    ↓
-③ SKILL figma-to-elementor (YA validado)
+③ FIGMA hi-fi — diseñador aplica SISTEMA DE DISEÑO + tokens sobre la variante aprobada
+   y consigue aprobación visual del cliente   ← valor de Alberto
+   ↓
+④ SKILL figma-to-elementor (YA validado)
    → Elementor v4 atómico, nativo, autogestionable
    ↓
-④ Verificación visual + refinamiento
+⑤ Verificación visual + refinamiento
 ```
+
+> **Validado 2026-06-24 (caso Ágave Azul):** ① keyword research + copy con SE Ranking; ②
+> 5 variantes de wireframe **con copy** empujadas a Figma como frames editables (el equipo
+> elige/edita ahí, como en Relume pero con el copy+SEO ya colocado). La captura HTML→Figma
+> usa `generate_figma_design`. **Gotcha:** navegar cambiando solo el `#hash` no recarga la
+> página → la captura se cuelga en `pending`; **resetear a `about:blank` antes de cada
+> captura**. No usar `browser_evaluate`+`fetch` (cuelga). Receta completa en
+> `.claude/skills/figma-to-elementor/references/html-to-figma-capture.md`.
 
 ### Fase 2 (piloto en paralelo, en staging — NO se promete al cliente aún)
 - **brief → Elementor directo** (sin Figma): la "Phase 2" que el skill ya tiene documentada (entrada por IR/JSON en vez de nodo Figma).
@@ -81,14 +93,14 @@ Reutiliza el contrato y las piezas que **ya existen** en `.claude/skills/figma-t
 
 **Piezas nuevas a construir (orden):**
 
-1. **Integración SE Ranking (keyword research).**
-   - Conectar el MCP oficial de SE Ranking (`claude mcp add --transport http se-ranking …` con API key) — o su Data API REST si el MCP da problemas.
-   - Nueva referencia: `references/seo-keyword-research.md` — cómo pedir volumen/dificultad/intención y volcarlo a la estructura.
-   - Credencial fuera del repo (mismo patrón que el Application Password en `portability-setup.md`).
+1. **SE Ranking — usar el plugin oficial (no construir desde cero).**
+   - Existe `seranking/seo-skills`: **26 skills oficiales** (content brief con keyword research + SERP, clustering pillar/spoke, auditorías…) sobre el MCP de SE Ranking. **Auth OAuth** vía `/mcp` (sin API key a mano); requiere cuenta SE Ranking con acceso API.
+   - Instalación: `/plugin marketplace add seranking/seo-skills` + `/plugin install seo-skills@seranking`.
+   - **No** construimos `references/seo-keyword-research.md` ni research propio: lo cubre SE Ranking. (El `claude mcp add` suelto se quitó para no duplicar con el del plugin.)
 
-2. **Generador brief → Section Plan + copy.**
-   - Nueva entrada del skill (o skill hermano `brief-to-structure`): briefing + keywords → IR (`ir-schema.md`) con copy SEO, **por secciones** (evita el límite de 5.000 char).
-   - Salida = mismo IR que ya consume el builder → encaja con Figma (Fase 1) y con Elementor directo (Fase 2).
+2. **Puente: salida SE Ranking → Section Plan (IR).**
+   - Nuestro valor diferencial: adaptador que toma el **content brief + clusters** que genera SE Ranking → **IR** (`ir-schema.md`) con la estructura por secciones → Figma (Fase 1) o Elementor directo (Fase 2).
+   - SE Ranking hace SEO + copy; nosotros hacemos el trasvase a Elementor nativo. Sin duplicar trabajo.
 
 3. **Piloto A/B Relume vs Claude** (decisión tomada: comparar).
    - Doc: `docs/superpowers/plans/2026-06-22-piloto-relume-vs-claude.md`.
@@ -100,8 +112,9 @@ Reutiliza el contrato y las piezas que **ya existen** en `.claude/skills/figma-t
 
 **Archivos clave:**
 - A modificar: `.claude/skills/figma-to-elementor/SKILL.md` (entrada Fase 2).
-- A crear: `references/seo-keyword-research.md`, `references/bloques-reutilizables.md`, el generador brief→IR, y los 2 docs de plan/piloto.
+- A crear: el **adaptador SE Ranking → IR**, `references/bloques-reutilizables.md`, y los 2 docs de plan/piloto.
 - A reutilizar tal cual: `references/ir-schema.md` y el resto de referencias.
+- SE Ranking (keyword research + content brief): **plugin oficial `seranking/seo-skills`**, no se construye.
 
 ---
 
