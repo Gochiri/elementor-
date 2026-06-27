@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframes · Inicio — Ágave Azul (5 variantes)</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  :root{
+    --g0:#fff; --g1:#f5f5f4; --g2:#ebeae8; --g3:#dcdbd8; --g4:#bdbcb8; --g5:#7d7b77; --g6:#46443f; --ink:#26241f;
+    --line:#c9c7c2; --dash:#b3b1ac;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans: ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --wrap:1140px;
+  }
+  *{box-sizing:border-box;margin:0;}
+  body{font-family:var(--sans);background:var(--g2);color:var(--ink);line-height:1.5;}
+  a{color:inherit;}
+
+  .topbar{position:sticky;top:0;z-index:99;background:var(--g6);color:#fff;padding:10px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .topbar b{font-size:14px;letter-spacing:.01em;}
+  .topbar .jump{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
+  .topbar .jump a{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:999px;color:#fff;text-decoration:none;}
+  .topbar .jump a:hover{background:rgba(255,255,255,.15);}
+
+  .board{max-width:var(--wrap);margin:0 auto;padding:28px 20px 80px;}
+  .lede{background:var(--g0);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:28px;}
+  .lede h1{font-size:20px;margin-bottom:6px;}
+  .lede p{color:var(--g5);font-size:14px;max-width:80ch;}
+
+  .variant{margin-bottom:40px;}
+  .vhead{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px;}
+  .vhead .vn{font:700 13px var(--mono);background:var(--g6);color:#fff;padding:4px 9px;border-radius:5px;letter-spacing:.06em;}
+  .vhead h2{font-size:19px;}
+  .vhead .desc{color:var(--g5);font-size:13px;width:100%;max-width:90ch;}
+
+  .frame{background:var(--g0);border:1px solid var(--g4);border-radius:8px;overflow:hidden;box-shadow:0 8px 30px -22px rgba(0,0,0,.4);}
+  .sec{padding:24px 26px;border-bottom:1px dashed var(--line);position:relative;}
+  .sec:last-child{border-bottom:0;}
+  .sec.dark{background:var(--g6);color:#fff;}
+  .sec.tint{background:var(--g1);}
+  .lbl{font:600 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--g5);display:block;margin-bottom:12px;}
+  .sec.dark .lbl{color:rgba(255,255,255,.55);}
+
+  .h1wf{font-weight:800;font-size:29px;line-height:1.1;letter-spacing:-.02em;}
+  .h2wf{font-weight:700;font-size:20px;letter-spacing:-.01em;}
+  .h3wf{font-weight:700;font-size:14.5px;}
+  .copy{font-size:13px;color:var(--g5);max-width:62ch;margin-top:8px;}
+  .sec.dark .copy{color:rgba(255,255,255,.72);}
+  .small{font-size:12px;color:var(--g5);}
+  .sec.dark .small{color:rgba(255,255,255,.6);}
+  .btn{display:inline-flex;align-items:center;border:1.5px solid var(--g6);color:var(--g6);font:600 12px var(--sans);padding:9px 15px;border-radius:5px;}
+  .btn.solid{background:var(--g6);color:#fff;}
+  .sec.dark .btn{border-color:rgba(255,255,255,.7);color:#fff;}
+  .sec.dark .btn.solid{background:#fff;color:var(--g6);}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+  .ph{border:1.5px dashed var(--dash);background:
+      repeating-linear-gradient(45deg,transparent,transparent 9px,rgba(0,0,0,.035) 9px,rgba(0,0,0,.035) 10px),var(--g1);
+      display:grid;place-content:center;color:var(--g5);font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;border-radius:4px;text-align:center;padding:8px;}
+  .grid{display:grid;gap:18px;}
+  .navwf{display:flex;align-items:center;gap:14px;}
+  .navwf .logo{font-weight:800;font-size:15px;}
+  .navwf .nlinks{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap;font-size:11.5px;color:var(--g5);}
+  .sec.dark .navwf .nlinks{color:rgba(255,255,255,.6);}
+  .pill{display:inline-block;font:600 9.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--g5);border:1px solid var(--g4);border-radius:999px;padding:3px 8px;margin-bottom:10px;}
+  .sec.dark .pill{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.4);}
+  .field{border:1px solid var(--g4);border-radius:4px;padding:9px 11px;font-size:12px;color:var(--g5);background:var(--g0);}
+  .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+  ul.ticks{list-style:none;margin-top:8px;display:grid;gap:5px;}
+  ul.ticks li{font-size:12.5px;color:var(--g5);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <b>Wireframes · Inicio — Ágave Azul</b>
+  <span style="font:600 11px var(--mono);opacity:.7;">5 variantes · con copy real · editable</span>
+  <nav class="jump">
+    <a href="#v1">V1 Clásico</a><a href="#v2">V2 Editorial</a><a href="#v3">V3 Visual</a><a href="#v4">V4 Conversión</a><a href="#v5">V5 Story</a>
+  </nav>
+</div>
+
+<div class="board">
+
+  <div class="lede">
+    <h1>Elige el esqueleto (con el copy ya colocado)</h1>
+    <p>5 estructuras para la home, cada una con el <b>copy real</b> de la etapa anterior en su sitio. Son wireframes en gris para decidir <b>layout y orden</b>; el color y la tipografía llegan en el hi-fi. Marca la que encaje (o mezcla secciones) y construimos el HTML final de esa.</p>
+  </div>
+
+  <!-- ============ V1 CLÁSICO ============ -->
+  <section class="variant" id="v1">
+    <div class="vhead"><span class="vn">V1</span><h2>Clásico / Lineal</h2><p class="desc">La apuesta segura. Hero centrado, secciones simétricas y apiladas. Fácil de aprobar, sin riesgos.</p></div>
+    <div class="frame">
+      <div class="sec"><div class="navwf"><span class="logo">Ágave Azul</span><span class="nlinks">Inicio · Carta · El Restaurante · Obrador · Catering · Foodtruck · Contacto</span><span class="btn solid">Reservar</span></div></div>
+      <div class="sec" style="text-align:center;">
+        <span class="lbl">Hero · centrado</span>
+        <div class="h1wf" style="max-width:24ch;margin:0 auto;">México auténtico en el corazón de Santander</div>
+        <p class="copy" style="margin:12px auto 0;">Desde hace 14 años: tortillas de maíz nixtamalizado hechas en nuestro propio obrador, recetas tradicionales y tequila artesanal de marca propia.</p>
+        <div class="row" style="justify-content:center;"><span class="btn solid">Reservar mesa</span><span class="btn">Ver la carta</span></div>
+        <div class="ph" style="height:150px;margin-top:18px;">Foto · panorámica restaurante</div>
+      </div>
+      <div class="sec"><span class="lbl">Intro · 2 columnas</span>
+        <div class="grid" style="grid-template-columns:1fr 1fr;"><div><div class="h3wf">El restaurante</div><p class="copy">Comida mexicana auténtica en Santander, para comer en sala, llevar o a domicilio.</p></div><div><div class="h3wf">El obrador</div><p class="copy">Fabricamos tortillas de maíz y productos mexicanos sin gluten para hostelería y distribuidores de toda España.</p></div></div></div>
+      <div class="sec tint"><span class="lbl">Servicios · 3 columnas · H2 “Como prefieras”</span>
+        <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+          <div><div class="h3wf">En nuestra mesa</div><p class="copy">Reserva y vive la experiencia completa en el restaurante.</p></div>
+          <div><div class="h3wf">Para llevar</div><p class="copy">Tu comida mexicana lista para recoger cuando quieras.</p></div>
+          <div><div class="h3wf">A domicilio</div><p class="copy">Te lo acercamos a casa, sin renunciar al sabor.</p></div></div>
+      </div>
+      <div class="sec"><span class="lbl">El maíz · imagen + texto</span>
+        <div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div class="ph" style="height:160px;">Foto · proceso</div><div><div class="h2wf">El secreto está en el maíz</div><p class="copy">Importamos maíz de México y lo trabajamos con el proceso ancestral de nixtamalización, la cocción con cal que da a la tortilla su sabor, aroma y textura reales. Por eso nuestras tortillas no saben como las demás.</p></div></div>
+      </div>
+      <div class="sec tint" style="text-align:center;"><span class="lbl">Tequila · banda</span><div class="h2wf">El único con tequila artesanal propio</div><p class="copy" style="margin:8px auto 0;">No solo lo servimos: lo firmamos. Somos el único restaurante de la zona con su propia marca de tequila artesanal.</p></div>
+      <div class="sec"><span class="lbl">Catering + Foodtruck</span><div class="grid" style="grid-template-columns:1fr 1fr;"><div><div class="h3wf">Catering mexicano</div><p class="copy">Para empresas, celebraciones y bodas, con opciones sin gluten para todos.</p></div><div><div class="h3wf">Food truck</div><p class="copy">Nuestra cocina sobre ruedas para ferias y eventos por toda Cantabria.</p></div></div></div>
+      <div class="sec dark"><span class="lbl">Cifras · 4 columnas</span><div class="grid" style="grid-template-columns:repeat(4,1fr);text-align:center;"><div><div class="h1wf">14</div><div class="small">años en Santander</div></div><div><div class="h1wf">10 t</div><div class="small">de maíz al año</div></div><div><div class="h1wf">100%</div><div class="small">sin gluten</div></div><div><div class="h1wf">1</div><div class="small">tequila propio</div></div></div></div>
+      <div class="sec"><span class="lbl">Reseñas · 3 columnas</span><div class="grid" style="grid-template-columns:repeat(3,1fr);">
+        <div><div class="small">★★★★★</div><p class="copy">“Las mejores tortillas que he probado fuera de México. Se nota el obrador propio.”</p></div>
+        <div><div class="small">★★★★★</div><p class="copy">“Auténtico, cuidado y sin gluten. Por fin un mexicano de verdad en Santander.”</p></div>
+        <div><div class="small">★★★★★</div><p class="copy">“El tequila de la casa es una experiencia aparte. Volveremos seguro.”</p></div></div></div>
+      <div class="sec tint"><span class="lbl">CTA + Mapa</span><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div><div class="h2wf">Te estamos esperando en Santander</div><p class="copy">Reserva tu mesa, pásate a recoger o pídelo a domicilio.</p><div class="row"><span class="btn solid">Reservar</span><span class="btn">Llamar</span></div></div><div class="ph" style="height:120px;">Mapa · Santander</div></div></div>
+      <div class="sec dark"><span class="lbl">Footer</span><p class="copy">Ágave Azul · Restaurante mexicano y obrador de tortillas de maíz en Santander.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ V2 EDITORIAL ============ -->
+  <section class="variant" id="v2">
+    <div class="vhead"><span class="vn">V2</span><h2>Editorial / Asimétrico</h2><p class="desc">Hero partido, secciones alternando lado, servicios numerados. “Marca con criterio” (línea del hi-fi).</p></div>
+    <div class="frame">
+      <div class="sec"><div class="navwf"><span class="logo">Ágave Azul</span><span class="nlinks">Inicio · Carta · El Restaurante · Obrador · Catering · Foodtruck · Contacto</span><span class="btn solid">Reservar mesa</span></div></div>
+      <div class="sec dark"><span class="lbl">Hero · split 60/40</span>
+        <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center;">
+          <div><span class="pill">Restaurante mexicano · Santander</span>
+            <div class="h1wf">México auténtico en el corazón de Santander</div>
+            <p class="copy">Desde hace 14 años: tortillas de maíz nixtamalizado hechas en nuestro propio obrador, recetas tradicionales y tequila artesanal de marca propia.</p>
+            <div class="row"><span class="btn solid">Reservar mesa</span><span class="btn">Ver la carta</span></div></div>
+          <div class="ph" style="height:200px;">Foto · tortilla / maíz · 4:5</div></div>
+      </div>
+      <div class="sec"><span class="lbl">Intro · asimétrico 1.2 / 1</span><div class="grid" style="grid-template-columns:1.2fr 1fr;align-items:end;"><div class="h2wf">Un restaurante, un obrador y una misma obsesión: hacerlo bien.</div><div><p class="copy">Ágave Azul son dos cosas. Un restaurante mexicano en Santander donde comer auténtico, y un obrador que fabrica tortillas de maíz y productos mexicanos para toda España. Lo que servimos en la mesa, lo hacemos nosotros desde el grano.</p><div class="small" style="margin-top:8px;color:var(--g6);font-weight:600;">→ Conoce nuestro obrador</div></div></div></div>
+      <div class="sec tint"><span class="lbl">Servicios · lista numerada</span><div class="grid" style="grid-template-columns:repeat(3,1fr);">
+        <div><div class="h3wf" style="color:var(--g5)">01</div><div class="h3wf">En nuestra mesa</div><p class="copy">Reserva y vive la experiencia completa.</p></div>
+        <div><div class="h3wf" style="color:var(--g5)">02</div><div class="h3wf">Para llevar</div><p class="copy">Lista para recoger cuando quieras.</p></div>
+        <div><div class="h3wf" style="color:var(--g5)">03</div><div class="h3wf">A domicilio</div><p class="copy">Te lo acercamos a casa.</p></div></div></div>
+      <div class="sec dark"><span class="lbl">El secreto · maíz</span><div class="grid" style="grid-template-columns:.9fr 1.1fr;align-items:center;"><div class="ph" style="height:160px;">Foto · proceso</div><div><div class="h2wf">El secreto está en el maíz</div><p class="copy">Importamos maíz de México y lo nixtamalizamos con cal, el proceso ancestral que da a la tortilla su sabor, aroma y textura reales. Por eso no saben como las demás: porque no se parecen en nada.</p></div></div></div>
+      <div class="sec"><span class="lbl">Tequila · marca + texto</span><div class="grid" style="grid-template-columns:auto 1fr;align-items:center;gap:24px;"><div class="h1wf" style="font-size:52px;color:var(--g4)">¡</div><div><div class="h2wf">El único con tequila artesanal propio</div><p class="copy">No solo lo servimos: lo firmamos. Somos el único restaurante de la zona con su propia marca de tequila artesanal, para cerrar la experiencia como se merece.</p></div></div></div>
+      <div class="sec tint"><span class="lbl">Catering + Foodtruck</span><div class="grid" style="grid-template-columns:1fr 1fr;"><div><div class="h3wf">Catering mexicano</div><p class="copy">Para empresas, celebraciones y bodas, con opciones sin gluten para todos los invitados.</p></div><div><div class="h3wf">Food truck</div><p class="copy">Llevamos nuestra cocina sobre ruedas a ferias y eventos por toda Cantabria.</p></div></div></div>
+      <div class="sec dark"><span class="lbl">Cifras · 4 columnas</span><div class="grid" style="grid-template-columns:repeat(4,1fr);"><div><div class="h1wf">14</div><div class="small">años</div></div><div><div class="h1wf">10 t</div><div class="small">maíz/año</div></div><div><div class="h1wf">100%</div><div class="small">sin gluten</div></div><div><div class="h1wf">1</div><div class="small">tequila propio</div></div></div></div>
+      <div class="sec"><span class="lbl">Reseñas · 3 columnas</span><div class="grid" style="grid-template-columns:repeat(3,1fr);"><div><div class="small">★★★★★</div><p class="copy">“Las mejores tortillas fuera de México. Se nota el obrador propio.”</p></div><div><div class="small">★★★★★</div><p class="copy">“Auténtico, cuidado y sin gluten. Un mexicano de verdad en Santander.”</p></div><div><div class="small">★★★★★</div><p class="copy">“El tequila de la casa es una experiencia aparte.”</p></div></div></div>
+      <div class="sec tint"><span class="lbl">CTA + Mapa</span><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div><div class="h2wf">Te estamos esperando en Santander</div><p class="copy">Reserva tu mesa, pásate a recoger o pídelo a domicilio.</p><div class="row"><span class="btn solid">Reservar</span><span class="btn">Llamar</span></div></div><div class="ph" style="height:120px;">Mapa</div></div></div>
+      <div class="sec dark"><span class="lbl">Footer</span><p class="copy">Ágave Azul · Restaurante mexicano y obrador en Santander.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ V3 VISUAL ============ -->
+  <section class="variant" id="v3">
+    <div class="vhead"><span class="vn">V3</span><h2>Visual / Imagen protagonista</h2><p class="desc">La comida entra por los ojos. Hero a sangre, galería de platos, menos texto. Exige buenas fotos.</p></div>
+    <div class="frame">
+      <div class="sec" style="position:relative;color:#fff;background:var(--g6);">
+        <div class="navwf"><span class="logo">Ágave Azul</span><span class="nlinks" style="color:rgba(255,255,255,.6)">Inicio · Carta · Restaurante · Obrador · Contacto</span><span class="btn">Reservar</span></div>
+        <span class="lbl" style="color:rgba(255,255,255,.55);margin-top:18px;">Hero · imagen full-bleed, título superpuesto</span>
+        <div class="ph" style="height:200px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.06),rgba(255,255,255,.06) 9px,transparent 9px,transparent 10px);border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.6);">Foto · plato estrella a pantalla completa</div>
+        <div style="position:absolute;left:40px;bottom:30px;"><div class="h1wf" style="max-width:18ch;">México auténtico en Santander</div><p class="copy" style="color:rgba(255,255,255,.8)">Tortillas de maíz nixtamalizado, hechas en nuestro obrador.</p></div>
+      </div>
+      <div class="sec"><span class="lbl">Galería de platos · mosaico</span><div class="grid" style="grid-template-columns:repeat(5,1fr);"><div class="ph" style="height:72px;">Tacos</div><div class="ph" style="height:72px;">Cochinita</div><div class="ph" style="height:72px;">Quesadillas</div><div class="ph" style="height:72px;">Nachos</div><div class="ph" style="height:72px;">Postres</div></div></div>
+      <div class="sec tint" style="text-align:center;"><span class="lbl">Intro breve</span><div class="h2wf" style="max-width:30ch;margin:0 auto;">Lo que servimos, lo hacemos desde el grano</div><p class="copy" style="margin:8px auto 0;">Un restaurante y un obrador propio en Santander. Maíz de México, proceso de nixtamalización, todo sin gluten.</p></div>
+      <div class="sec"><span class="lbl">El maíz · imagen ancha + caption</span><div class="ph" style="height:170px;">Foto · nixtamalización a lo ancho</div><p class="copy" style="margin-top:10px;">El secreto está en el maíz: lo importamos de México y lo cocemos con cal, el proceso ancestral que le da su sabor y textura reales.</p></div>
+      <div class="sec tint"><span class="lbl">Carta · preview visual</span><div class="grid" style="grid-template-columns:repeat(3,1fr);"><div class="ph" style="height:110px;">Tacos</div><div class="ph" style="height:110px;">Cochinita pibil</div><div class="ph" style="height:110px;">Quesadillas</div></div><div class="row" style="justify-content:center;"><span class="btn solid">Ver la carta completa</span></div></div>
+      <div class="sec dark"><span class="lbl">Reseñas sobre imagen</span><div class="grid" style="grid-template-columns:2fr 1fr;align-items:center;"><div class="ph" style="height:120px;border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.6);background:none;">Foto ambiente</div><div><div class="small">★★★★★</div><p class="copy">“Por fin un mexicano de verdad en Santander. Auténtico y sin gluten.”</p></div></div></div>
+      <div class="sec"><span class="lbl">Catering + Foodtruck + Cifras</span><div class="grid" style="grid-template-columns:1fr 1fr 1fr;"><div><div class="h3wf">Catering</div><p class="copy">Eventos y celebraciones.</p></div><div><div class="h3wf">Food truck</div><p class="copy">Sobre ruedas por Cantabria.</p></div><div><div class="h3wf">14 años</div><p class="copy">10 t de maíz/año · 100% sin gluten.</p></div></div></div>
+      <div class="sec tint"><span class="lbl">CTA + Mapa</span><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div><div class="h2wf">Reserva tu mesa</div><p class="copy">Te esperamos en Santander.</p><div class="row"><span class="btn solid">Reservar</span></div></div><div class="ph" style="height:110px;">Mapa</div></div></div>
+      <div class="sec dark"><span class="lbl">Footer</span><p class="copy">Ágave Azul · Santander.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ V4 CONVERSIÓN ============ -->
+  <section class="variant" id="v4">
+    <div class="vhead"><span class="vn">V4</span><h2>Conversión / Reserva-first</h2><p class="desc">Optimizada para reservar. Formulario en el hero, prueba social arriba, CTAs repetidos y barra fija.</p></div>
+    <div class="frame">
+      <div class="sec"><div class="navwf"><span class="logo">Ágave Azul</span><span class="nlinks">Inicio · Carta · Restaurante · Obrador · Contacto · ☎ 942 ··· ···</span><span class="btn solid">Reservar</span></div></div>
+      <div class="sec"><span class="lbl">Hero · texto + FORMULARIO de reserva</span>
+        <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center;">
+          <div><div class="h1wf">México auténtico en Santander</div><p class="copy">Tortillas de maíz nixtamalizado de obrador propio, recetas tradicionales y tequila artesanal. 14 años en Santander.</p></div>
+          <div style="border:1px solid var(--g4);border-radius:6px;padding:16px;background:var(--g1);">
+            <div class="h3wf">Reserva tu mesa</div>
+            <div class="formgrid"><span class="field">Fecha</span><span class="field">Personas</span><span class="field">Hora</span><span class="field">Zona</span></div>
+            <div class="row"><span class="btn solid" style="width:100%;justify-content:center;">Buscar disponibilidad</span></div></div></div>
+      </div>
+      <div class="sec tint" style="text-align:center;"><span class="lbl">Barra de prueba social (inmediata)</span><div class="h3wf">★★★★★ 4,8 · 600+ reseñas en Google · 14 años en Santander · 100% sin gluten</div></div>
+      <div class="sec"><span class="lbl">Servicios · con CTA</span><div class="grid" style="grid-template-columns:repeat(3,1fr);"><div><div class="h3wf">En la mesa →</div><p class="copy">La experiencia completa.</p></div><div><div class="h3wf">Para llevar →</div><p class="copy">Lista para recoger.</p></div><div><div class="h3wf">A domicilio →</div><p class="copy">Te lo acercamos a casa.</p></div></div></div>
+      <div class="sec dark"><span class="lbl">Cifras + Reseñas (confianza temprana)</span><div class="grid" style="grid-template-columns:1fr 1fr 1fr 1fr;"><div><div class="h1wf">14</div><div class="small">años</div></div><div><div class="h1wf">10 t</div><div class="small">maíz/año</div></div><div><div class="h1wf">100%</div><div class="small">sin gluten</div></div><div><div class="h1wf">4,8★</div><div class="small">en Google</div></div></div></div>
+      <div class="sec"><span class="lbl">El maíz · breve</span><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div><div class="h2wf">El secreto está en el maíz</div><p class="copy">Maíz de México, nixtamalizado con cal. Sabor real, todo sin gluten.</p></div><div class="ph" style="height:100px;">Foto</div></div></div>
+      <div class="sec tint"><span class="lbl">Catering + Foodtruck · presupuesto</span><div class="grid" style="grid-template-columns:1fr 1fr;"><div><div class="h3wf">Catering mexicano</div><p class="copy">Para tu evento o empresa. Pide presupuesto.</p></div><div><div class="h3wf">Food truck</div><p class="copy">Sobre ruedas por Cantabria. Pide presupuesto.</p></div></div></div>
+      <div class="sec"><span class="lbl">CTA + Mapa</span><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;"><div><div class="h2wf">Reserva ahora</div><p class="copy">Reserva, recoge o pide a domicilio.</p><div class="row"><span class="btn solid">Reservar</span><span class="btn">Llamar</span></div></div><div class="ph" style="height:110px;">Mapa</div></div></div>
+      <div class="sec dark" style="text-align:center;"><span class="lbl">Barra fija inferior (sticky)</span><div class="row" style="justify-content:center;"><span class="small" style="color:#fff;">¿Listo para tu mesa?</span><span class="btn solid">Reservar mesa</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ V5 STORY ============ -->
+  <section class="variant" id="v5">
+    <div class="vhead"><span class="vn">V5</span><h2>Storytelling / Doble marca</h2><p class="desc">Narrativa de oficio. Historia → maíz protagonista → “cruce de caminos” Restaurante vs Obrador.</p></div>
+    <div class="frame">
+      <div class="sec"><div class="navwf"><span class="logo">Ágave Azul</span><span class="nlinks">Inicio · Carta · Restaurante · Obrador · Contacto</span><span class="btn">Reservar</span></div></div>
+      <div class="sec" style="text-align:center;"><span class="lbl">Hero · declaración</span><div class="h1wf" style="max-width:22ch;margin:0 auto;">Desde el grano hasta tu mesa, como en México</div><p class="copy" style="margin:10px auto 0;">14 años de oficio en Santander: un restaurante y un obrador propio de tortillas de maíz nixtamalizado, sin gluten.</p><div class="small" style="margin-top:10px;">↓</div></div>
+      <div class="sec tint"><span class="lbl">Historia (primero)</span><div class="grid" style="grid-template-columns:1fr 1.2fr;align-items:center;"><div class="ph" style="height:150px;">Foto · equipo / local</div><div><div class="h2wf">Empezó hace 14 años</div><p class="copy">Quisimos traer a Santander el sabor real de México: nada de atajos ni estereotipos. Hoy somos restaurante y obrador, y todo lo que servimos lo elaboramos nosotros desde el grano.</p></div></div></div>
+      <div class="sec dark"><span class="lbl">El maíz · sección protagonista</span><div class="ph" style="height:120px;border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.6);background:none;">Foto · nixtamalización a lo ancho</div><div class="h2wf" style="margin-top:14px;">El secreto está en el maíz</div><p class="copy">Importamos maíz de México y lo cocemos con cal —nixtamalización—, el proceso ancestral que da a la tortilla su sabor, aroma y textura reales.</p></div>
+      <div class="sec"><span class="lbl">Cruce de caminos · 2 puertas</span><div class="grid" style="grid-template-columns:1fr 1fr;"><div style="border:1.5px solid var(--g4);border-radius:6px;padding:18px;"><div class="small">¿Vienes a comer?</div><div class="h3wf" style="margin-top:4px;">El restaurante →</div><p class="copy">Reserva mesa, pide para llevar o a domicilio.</p></div><div style="border:1.5px solid var(--g4);border-radius:6px;padding:18px;"><div class="small">¿Eres profesional?</div><div class="h3wf" style="margin-top:4px;">El obrador →</div><p class="copy">Tortillas y productos mexicanos sin gluten para restaurantes y distribuidores de toda España.</p></div></div></div>
+      <div class="sec tint"><span class="lbl">Camino restaurante · servicios + tequila</span><div class="grid" style="grid-template-columns:1fr 1fr 1fr;"><div><div class="h3wf">En la mesa</div><p class="copy">La experiencia completa.</p></div><div><div class="h3wf">Para llevar / domicilio</div><p class="copy">Cuando prefieras.</p></div><div><div class="h3wf">Tequila propio</div><p class="copy">Único con marca artesanal propia.</p></div></div></div>
+      <div class="sec"><span class="lbl">Cifras + Reseñas</span><div class="grid" style="grid-template-columns:1fr 1fr;"><div><div class="h3wf">14 años · 10 t maíz/año · 100% sin gluten</div></div><div><div class="small">★★★★★</div><p class="copy">“Las mejores tortillas fuera de México. Se nota el obrador propio.”</p></div></div></div>
+      <div class="sec dark"><span class="lbl">CTA dual</span><div class="row"><span class="btn solid">Reservar mesa</span><span class="btn">Contactar con el obrador</span></div></div>
+      <div class="sec"><span class="lbl">Footer</span><p class="copy">Ágave Azul · Restaurante mexicano y obrador en Santander.</p></div>
+    </div>
+  </section>
+
+  <div class="lede" style="margin-top:8px;">
+    <h1>¿Cómo seguimos?</h1>
+    <p>Dime la variante (V1–V5) o la mezcla. Con la aprobada construyo el HTML hi-fi de esa estructura → Figma → Elementor.</p>
+  </div>
+
+</div>
+</body>
+</html>
