@@ -29,6 +29,17 @@ en vivo antes de pasar a la siguiente.
 - `references/portability-setup.md` — correr la skill en desktop/web/Antigravity: cómo
   corren los MCP (Figma y Elementor son HTTP remotos → portables), setup por entorno y
   seguridad del credencial.
+- `references/html-to-figma-capture.md` — **etapa previa del flujo web:** generar
+  wireframes con copy (reemplazo de Relume) y empujar HTML→Figma con `generate_figma_design`
+  (receta de captura + gotcha del `about:blank`). Produce el archivo Figma que este skill consume.
+
+## Etapa previa del flujo web — wireframes con copy + captura HTML→Figma (validado 2026-06-24)
+Este skill empieza cuando ya hay una página **hi-fi aprobada en Figma**. El tramo anterior
+—generar **4-5 wireframes con el copy+SEO ya colocado** (reemplazo de Relume) y empujarlos a
+Figma con `generate_figma_design`— está en `references/html-to-figma-capture.md`.
+**Gotcha clave:** navegar cambiando **solo el `#hash` NO recarga la página** y la captura se
+cuelga en `pending`; **resetear el navegador a `about:blank` antes de cada captura** fuerza
+recarga fresca y la completa. No inyectar la captura con `browser_evaluate`+`fetch` (cuelga).
 
 ## Secuencia
 1. **Unidad 0** — Setup de tokens globales (una vez).
